@@ -1,0 +1,116 @@
+@import url('https://fonts.googleapis.com/css2?family=Big+Shoulders+Inline+Text:wght@300&family=Oswald:wght@200;400;600&family=Quicksand:wght@300;400;600&display=swap');
+
+/*////////////////////////
+    Table of Contents
+    1. Global Styles
+    2. Typography
+    3. Layout
+        3.1 Reusables
+        3.2 Other
+    4. Areas
+        4.1
+        4.2
+        etc.
+    5. Media Queries
+////////////////////////*/
+
+/* ------------------------------- 1. Global Styles -------------------------------- */
+/*Css reset with box-sizing to border-box so every element is measured including padding and borders*/
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --clr-red: hsl(7, 100%, 32%);
+    --clr-dark-orange: hsl(18, 98%, 36%);
+    --clr-orange: hsl(30, 95%, 46%);
+    --clr-powder: hsl(42, 100%, 92%);
+    --clr-chocolate: hsl(338, 83%, 12%);
+    --clr-yellow: hsl(55, 100%, 64%);
+}
+
+/* ------------------------------- 2. Typography ----------------------------------- */
+
+/*Setting the standard so I can work with rem and scale down with mobile screen*/
+
+html {
+    font-size: 20px;
+}
+
+@media screen and (max-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+body {
+    font-family: "Quicksand", "Helvetica Neue", sans-serif;
+}
+
+button,
+input {
+    font-family: inherit;
+}
+
+h1 {
+    font-family: 'Big Shoulders Inline Text', "Oswald", "Arial", cursive;
+    font-weight: 300;
+    font-size: 4rem;
+    color: var(--clr-red);
+}
+
+h2, h3, h4, h5, h6 {
+    font-family: "Oswald", "Arial", sans-serif;
+}
+
+h2 {
+    font-size: 2rem;
+    font-weight: 400;
+}
+
+h3 {
+    font-size: 1.5rem;
+}
+
+/* ------------------------------- 3. Layout --------------------------------------- */
+
+/* --------------- 3.1 Reusables ----------------------- */
+
+.outer-container {
+    /*Outer container always stretching over the full screen width positioning everything in the center*/
+    width: 100vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.inner-container {
+    /*!*Inside container is max 1400px width so it looks good on wide screens too - changing sizes to rem to make it easy to scale. Standard is 20px so 1400px is 70rem. It can shrink if the screen gets smaller but can not grow.*/
+    flex-basis: 70rem;
+    flex-shrink: 1;
+    flex-grow: 0;
+    /*Adding margin to left and right so content doesnt get squeezed to edges*/
+    margin-inline: 1rem;
+    /*Making this a flex container too so I can position all the children underneath each other.*/
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 3rem 0;
+}
+
+/* --------------- 3.2 Other --------------------------- */
+
+img {
+    width: 100%;
+}
+
+/*button, links*/
+/* ------------------------------- 4. Areas ---------------------------------------- */
+
+/* --------------- 4.1  ------------------------- */
+
+/* --------------- 4.2  ------------------- */
+
+/* ------------------------------- 5. Media Queries -------------------------------- */
