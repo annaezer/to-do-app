@@ -16,6 +16,12 @@ body {
     height: 100vh;
 }
 
+.delete-button,
+.edit-button,
+.link-button {
+    background: none;
+    border: none;
+}
 /* ------------------------------- Typography ----------------------------------- */
 
 /*Setting the standard so I can work with rem and scale down with mobile screen*/
