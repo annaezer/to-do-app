@@ -1,47 +1,37 @@
-import {useState} from 'react';
+import styles from "./Home.module.css";
+import {useEffect, useState} from 'react';
 import {v4 as id} from "uuid";
 import {ArrowUp, ArrowDown} from "@phosphor-icons/react";
-import ListItem from "../../../to-do-app/src/components/listItem/ListItem.jsx";
+import ListItem from "../../components/listItem/ListItem.jsx";
+import axios from "axios";
 
-const todoList = [
-    {
-        id: id(),
-        title: "Learn HTML",
-        completed: false,
-        priority: 3,
-        description: "",
-    },
-    {
-        id: id(),
-        title: "Learn CSS",
-        completed: false,
-        priority: 3,
-        description: "",
-    },
-    {
-        id: id(),
-        title: "Learn JavaScript",
-        completed: false,
-        priority: 2,
-        description: "",
-    },
-    {
-        id: id(),
-        title: "Learn React",
-        completed: false,
-        priority: 1,
-        description: "",
-    }]
-
+const URI = "http://localhost:3000/"
+const ENDPOINT = "todos"
 function Home() {
 
-    const [todos, setTodos] = useState(todoList);
+    const [todos, setTodos] = useState([]);
     const [inputValue, setInputValue] = useState("");
     const [priority, setPriority] = useState(3);
     const [completed, setCompleted] = useState(false);
     const [sorted, setSorted] = useState(false);
 
-    function addTodo(e) {
+
+    useEffect(()=> {
+        async function fetchTodos() {
+            try {
+                const results = await axios.get(`${URI}${ENDPOINT}`);
+                console.log(results.data);
+                setTodos(results.data);
+            } catch (error) {
+                console.error(error);
+            }
+        } void fetchTodos();
+        }, []);
+
+
+
+    async function addTodo(e) {
+        const date = `${new Date().getDate()}/${new Date().getMonth() + 1}/${new Date().getFullYear()}`;
         e.preventDefault()
 
         if (inputValue) {
@@ -51,6 +41,7 @@ function Home() {
                 completed: completed,
                 priority: priority,
                 description: "",
+                created: date,
             }])
             setInputValue("");
             setPriority(3);
@@ -59,9 +50,6 @@ function Home() {
             alert("Please enter a task");
         }
     }
-
-    console.log(todos);
-    console.log(inputValue, priority, completed);
 
     function sortTodos(comparator) {
         const sortedTodos = [...todos];

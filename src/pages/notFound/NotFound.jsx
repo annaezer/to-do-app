@@ -1,3 +1,4 @@
+import styles from "./NotFound.module.css";
 import {useNavigate} from "react-router-dom";
 import {useEffect} from "react";
 
