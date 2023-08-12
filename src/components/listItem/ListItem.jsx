@@ -22,10 +22,6 @@ function ListItem({todo, todos, setTodos, URI, ENDPOINT}) {
         );
     }
 
-    // function deleteTask(id) {
-    //     setTodos(todos.filter((todo) => todo.id !== id))
-    // }
-
         async function deleteTodo(id) {
         try {
             const deletedTodo = await axios.delete(`${URI}${ENDPOINT}/${id}`);

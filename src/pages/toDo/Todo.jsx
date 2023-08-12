@@ -1,8 +1,9 @@
 import styles from "./ToDo.module.css";
-import {Link, useNavigate, useParams} from "react-router-dom";
+import {Link, useParams} from "react-router-dom";
 import {useEffect, useState} from "react";
 import {ArrowLeft, Pencil} from "@phosphor-icons/react";
 import axios from "axios";
+import reverseDate from "../../helpers/reverseDate.jsx";
 
 const URI = "http://localhost:3000/"
 const ENDPOINT = "todos"
@@ -12,9 +13,15 @@ function Todo() {
 
     const [edit, toggleEdit] = useState(true);
     const [thisTodo, setThisTodo] = useState({});
-    const [error, setError] = useState("");
 
-    const navigate = useNavigate();
+    console.log(thisTodo);
+
+    const [error, setError] = useState("");
+    const [inputValue, setInputValue] = useState("");
+    const [dateValue, setDateValue] = useState("");
+    const [priority, setPriority] = useState(3);
+    const [completed, setCompleted] = useState(false);
+    const [descriptionValue, setDescriptionValue] = useState("");
 
     useEffect(() => {
         async function fetchThisTodo() {
@@ -23,27 +30,27 @@ function Todo() {
                 const results = await axios.get(`${URI}${ENDPOINT}/${id}`);
                 console.log(results);
                 setThisTodo(results.data);
+                setInputValue(results.data.title);
+                setDateValue(results.data.created);
+                setPriority(results.data.priority);
+                setCompleted(results.data.completed);
+                setDescriptionValue(results.data.description);
             } catch (error) {
                 console.error(error);
                 setError("Failed to get this to do")
             }
         }
-
         void fetchThisTodo();
     }, []);
 
-        async function editTodo() {
-
-        // const date = `${new Date().getDate()}/${new Date().getMonth() + 1}/${new Date().getFullYear()}`;
-
+    async function editTodo() {
         try {
             const editedTodo = await axios.put(`${URI}${ENDPOINT}/${id}`, {
-                id: id,
-                title: "Ik heb nu iets gewijzigd",
-                completed: false,
-                description: "Gewijzigde test",
-                priority: 3,
-                created: date,
+                title: inputValue,
+                completed: completed,
+                description: descriptionValue,
+                priority: priority,
+                created: dateValue,
             })
             console.log(editedTodo.data);
         } catch (error) {
@@ -52,44 +59,37 @@ function Todo() {
     }
 
     function cancelEdit() {
-
+        setInputValue(thisTodo.title);
+        setDateValue(thisTodo.created);
+        setPriority(thisTodo.priority);
+        setCompleted(thisTodo.completed);
+        setDescriptionValue(thisTodo.description);
     }
 
     return (
         <>
-            {console.log(thisTodo)}
             <h2>To do</h2>
-            <p>To do id {id}</p>
+
             {error && <p>Error to fetch your to do</p>}
 
             {Object.keys(thisTodo).length > 0 && (
-                <p>Title to do: {thisTodo.title}</p>)}
 
-            {edit ?
+                edit ?
                 <>
                     <button
                         type="button"
                         className="edit-button"
                         onClick={() => toggleEdit(false)}><Pencil size={16} color="#380518"/>Edit
                     </button>
-                    <p>Title: {thisTodo.name}</p>
-                    <p>Date created: {thisTodo.date}</p>
-
-                    <label
-                        htmlFor="check-todo">
-                        <input
-                            type="checkbox"
-                            id="check-todo"
-                            name="status-todo"
-                        />
-                        Done</label>
-                    <p>Priority:</p>
-
-                    <span><Link to="/"><ArrowLeft size={16} color="#380518"/>Back to all to-do's</Link></span>
+                    <p>Title: {thisTodo.title}</p>
+                    <p>Description: {thisTodo.description}</p>
+                    <p>Date created: {reverseDate(thisTodo.created)}</p>
+                    <p>Status: {thisTodo.completed === true ? "Done" : "To do"}</p>
+                    <p>Priority: {thisTodo.priority === 3 ? "Low" : thisTodo.priority === 2 ? "Medium" : "High"}</p>
                 </>
                 :
-                <>
-                    <form onSubmit={editTodo}>
+                <form onSubmit={editTodo}>
+
                         <label
                             htmlFor="title-todo">
                             Title:
@@ -97,8 +97,23 @@ function Todo() {
                                 type="text"
                                 id="title-todo"
                                 name="title-todo"
+                                value={inputValue}
+                                onChange={e => setInputValue(e.target.value)}
                             />
                         </label>
+
+                        <label
+                            htmlFor="description-todo">
+                            Description:
+                            <input
+                                type="text"
+                                id="description-todo"
+                                name="description-todo"
+                                value={descriptionValue}
+                                onChange={e => setDescriptionValue(e.target.value)}
+                            />
+                        </label>
+
                         <label
                             htmlFor="date-todo">
                             Date created:
@@ -106,34 +121,41 @@ function Todo() {
                                 type="date"
                                 id="date-todo"
                                 name="date-todo"
+                                value={dateValue}
+                                onChange={e => setDateValue(e.target.value)}
                             />
                         </label>
-                        <label
-                            htmlFor="check-todo">
+
+                        <label htmlFor="check-todo">
                             <input
                                 type="checkbox"
                                 id="check-todo"
                                 name="status-todo"
+                                checked={completed}
+                                onChange={() => setCompleted(!completed)}
                             />
                             Done</label>
+
                         <label htmlFor="priority"> Select priority
                             <select
                                 id="priority"
                                 name="priority"
-                                // value={priority}
-                                // onChange={e => setPriority(parseInt(e.target.value))}
+                                value={priority}
+                                onChange={e => setPriority(parseInt(e.target.value))}
                             >
                                 <option value="1">High priority</option>
                                 <option value="2">Medium priority</option>
                                 <option value="3">Low priority</option>
                             </select>
                         </label>
+
                         <button type="submit">Edit</button>
-                        <button type="button" onClick={cancelEdit}>Annuleren</button>
+
+                        <button type="reset" onClick={cancelEdit}>Annuleren</button>
+
                     </form>
-                    <span><Link to="/"><ArrowLeft size={16} color="#380518"/>Back to all to-do's</Link></span>
-                </>
-            }
+            )}
+                <span><Link to="/"><ArrowLeft size={16} color="#380518"/>Back to all to-do's</Link></span>
         </>
     );
 }

@@ -30,7 +30,6 @@ function Home() {
                 setError("Failed to get the to do's")
             }
         }
-
         void fetchTodos();
     }, []);
 
