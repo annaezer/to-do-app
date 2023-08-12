@@ -1,0 +1,15 @@
+ul {
+    list-style: none;
+}
+
+a {
+text-decoration: none;
+}
+
+.default {
+    border: 1px solid transparent;
+}
+
+.active {
+    border-bottom: 1px solid red;
+}
