@@ -1,6 +1,5 @@
 import './styles/global.css'
 import './styles/variables.css'
-import axios from "axios";
 import Home from "./pages/home/Home.jsx";
 import About from "./pages/about/About.jsx";
 import Todo from "./pages/toDo/Todo.jsx";

@@ -30,6 +30,7 @@ function Home() {
                 setError("Failed to get the to do's")
             }
         }
+
         void fetchTodos();
     }, []);
 
@@ -43,7 +44,7 @@ function Home() {
                     id: id(),
                     title: inputValue,
                     completed: completed,
-                    description: "",
+                    description: "Write here your description",
                     priority: priority,
                     created: date,
                 });
@@ -78,11 +79,8 @@ function Home() {
 
     return (
         <main>
-
             <h1>Todo App</h1>
-
             <form onSubmit={addTodo}>
-
                 <label htmlFor="new-task">New task
                     <input
                         type="text"
@@ -93,7 +91,6 @@ function Home() {
                         onChange={e => setInputValue(e.target.value)}
                     />
                 </label>
-
                 <label htmlFor="priority"> Select priority
                     <select
                         id="priority"
@@ -106,9 +103,7 @@ function Home() {
                         <option value="3">Low priority</option>
                     </select>
                 </label>
-
                 <button type="submit">Add task</button>
-
             </form>
 
             {sorted ?
@@ -120,13 +115,14 @@ function Home() {
                                                                                                  color="#380518"/>
                 </button>
             }
+
             <ol>
                 {todos.map((todo) => {
                     return (
                         <ListItem
+                            key={todo.id}
                             URI={URI}
                             ENDPOINT={ENDPOINT}
-                            key={todo.id}
                             todo={todo}
                             todos={todos}
                             setTodos={setTodos}

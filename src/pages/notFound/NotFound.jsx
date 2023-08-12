@@ -13,7 +13,7 @@ function NotFound() {
 
 
     return (
-        <h2>Deze pagina bestaat niet, je wordt in 3 seconden teruggestuurd naar de Homepagina</h2>
+        <h2>This page doesn't exist. You'll be redirected to the homepage in 3 seconds.</h2>
     );
 }
 

@@ -3,7 +3,6 @@ import {Link, useParams} from "react-router-dom";
 import {useEffect, useState} from "react";
 import {ArrowLeft, Pencil} from "@phosphor-icons/react";
 import axios from "axios";
-import reverseDate from "../../helpers/reverseDate.jsx";
 
 const URI = "http://localhost:3000/"
 const ENDPOINT = "todos"
@@ -13,9 +12,6 @@ function Todo() {
 
     const [edit, toggleEdit] = useState(true);
     const [thisTodo, setThisTodo] = useState({});
-
-    console.log(thisTodo);
-
     const [error, setError] = useState("");
     const [inputValue, setInputValue] = useState("");
     const [dateValue, setDateValue] = useState("");
@@ -40,6 +36,7 @@ function Todo() {
                 setError("Failed to get this to do")
             }
         }
+
         void fetchThisTodo();
     }, []);
 
@@ -73,23 +70,21 @@ function Todo() {
             {error && <p>Error to fetch your to do</p>}
 
             {Object.keys(thisTodo).length > 0 && (
-
                 edit ?
-                <>
-                    <button
-                        type="button"
-                        className="edit-button"
-                        onClick={() => toggleEdit(false)}><Pencil size={16} color="#380518"/>Edit
-                    </button>
-                    <p>Title: {thisTodo.title}</p>
-                    <p>Description: {thisTodo.description}</p>
-                    <p>Date created: {reverseDate(thisTodo.created)}</p>
-                    <p>Status: {thisTodo.completed === true ? "Done" : "To do"}</p>
-                    <p>Priority: {thisTodo.priority === 3 ? "Low" : thisTodo.priority === 2 ? "Medium" : "High"}</p>
-                </>
-                :
-                <form onSubmit={editTodo}>
-
+                    <>
+                        <button
+                            type="button"
+                            className="edit-button"
+                            onClick={() => toggleEdit(false)}><Pencil size={16} color="#380518"/>Edit
+                        </button>
+                        <p>Title: {thisTodo.title}</p>
+                        <p>Description: {thisTodo.description}</p>
+                        <p>Date created: {thisTodo.created}</p>
+                        <p>Status: {thisTodo.completed === true ? "Done" : "To do"}</p>
+                        <p>Priority: {thisTodo.priority === 3 ? "Low" : thisTodo.priority === 2 ? "Medium" : "High"}</p>
+                    </>
+                    :
+                    <form onSubmit={editTodo}>
                         <label
                             htmlFor="title-todo">
                             Title:
@@ -101,7 +96,6 @@ function Todo() {
                                 onChange={e => setInputValue(e.target.value)}
                             />
                         </label>
-
                         <label
                             htmlFor="description-todo">
                             Description:
@@ -113,7 +107,6 @@ function Todo() {
                                 onChange={e => setDescriptionValue(e.target.value)}
                             />
                         </label>
-
                         <label
                             htmlFor="date-todo">
                             Date created:
@@ -125,7 +118,6 @@ function Todo() {
                                 onChange={e => setDateValue(e.target.value)}
                             />
                         </label>
-
                         <label htmlFor="check-todo">
                             <input
                                 type="checkbox"
@@ -135,7 +127,6 @@ function Todo() {
                                 onChange={() => setCompleted(!completed)}
                             />
                             Done</label>
-
                         <label htmlFor="priority"> Select priority
                             <select
                                 id="priority"
@@ -148,14 +139,11 @@ function Todo() {
                                 <option value="3">Low priority</option>
                             </select>
                         </label>
-
                         <button type="submit">Edit</button>
-
                         <button type="reset" onClick={cancelEdit}>Annuleren</button>
-
                     </form>
             )}
-                <span><Link to="/"><ArrowLeft size={16} color="#380518"/>Back to all to-do's</Link></span>
+            <span><Link to="/"><ArrowLeft size={16} color="#380518"/>Back to all to-do's</Link></span>
         </>
     );
 }

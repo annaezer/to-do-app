@@ -9,7 +9,7 @@
 }
 
 body {
-    background-image: url('../assets/notebook edited.jpg');
+    background-image: url('../assets/notebook.jpg');
     background-size: cover;
     background-position: center;
     width: 100vw;
@@ -22,6 +22,7 @@ body {
     background: none;
     border: none;
 }
+
 /* ------------------------------- Typography ----------------------------------- */
 
 /*Setting the standard so I can work with rem and scale down with mobile screen*/
