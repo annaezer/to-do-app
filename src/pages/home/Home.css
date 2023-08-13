@@ -1,0 +1,95 @@
+main {
+    position: relative;
+}
+
+.new-todo-form {
+    min-width: 32rem;
+    position: absolute;
+    top: -1.4rem;
+    left: calc(50% - 16rem);
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 1rem;
+    align-items: center;
+}
+
+.new-todo-form input,
+.new-todo-form select,
+.new-todo-form button,
+.sorting-button {
+    color: var(--clr-chocolate);
+    font-weight: 400;
+    text-align: center;
+    background: var(--clr-powder);
+    border: 0.1rem solid var(--clr-red);
+    border-radius: 0.6rem;
+    padding: 0.7rem 0.5rem;
+    font-size: 0.8rem;
+}
+
+.new-todo-form input {
+    padding-inline: 4rem;
+}
+
+.new-todo-form input::placeholder {
+    color: var(--clr-chocolate);
+}
+
+.new-todo-form input:focus::placeholder {
+    color: transparent;
+}
+
+.new-todo-form input:focus,
+.new-todo-form select:focus {
+    outline: none;
+    border: 0.1rem solid var(--clr-orange);
+}
+
+.new-todo-form button {
+    background: var(--clr-yellow);
+    color: var(--clr-chocolate);
+    font-weight: 600;
+    border: 0.1rem solid var(--clr-yellow);
+}
+
+.new-todo-form button:hover {
+    color: var(--clr-powder);
+    background: var(--clr-red);
+    border: 0.1rem solid var(--clr-red);
+}
+
+.sorting-button {
+    background: var(--clr-dark-orange);
+    border: 0.1rem solid var(--clr-dark-orange);
+    color: var(--clr-powder);
+    font-weight: 600;
+    min-width: 10rem;
+    margin-block: 2rem;
+}
+
+.sorting-button:hover {
+    background: var(--clr-yellow);
+    border: 0.1rem solid var(--clr-yellow);
+    color: var(--clr-chocolate);
+}
+
+.error-message {
+    font-size: 1.5rem;
+    color: var(--clr-red);
+}
+
+ol {
+    min-width: 32rem;
+}
+
+@media screen and (max-width: 768px) {
+    .new-todo-form {
+        position: relative;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin-inline: 0;
+    }
+}

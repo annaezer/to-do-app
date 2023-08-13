@@ -1,0 +1,40 @@
+.nav-bar {
+    background: var(--clr-dark-orange);
+    height: 3rem;
+}
+
+.nav-content {
+    flex-basis: 60rem;
+    margin-inline: 1rem;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.menu-items {
+    list-style: none;
+    flex-basis: 10rem;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.default {
+    color: var(--clr-powder);
+    text-transform: lowercase;
+    border-bottom: 0.05rem solid transparent;
+}
+
+.active {
+    color: var(--clr-powder);
+    text-transform: lowercase;
+    border-bottom: 0.05rem solid var(--clr-yellow);
+}
+
+.active:hover,
+.default:hover {
+    color: var(--clr-chocolate);
+}

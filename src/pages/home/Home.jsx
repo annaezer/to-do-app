@@ -1,9 +1,10 @@
-import styles from "./Home.module.css";
+import "./Home.css";
 import {useEffect, useState} from 'react';
 import {v4 as id} from "uuid";
 import {ArrowUp, ArrowDown} from "@phosphor-icons/react";
 import ListItem from "../../components/listItem/ListItem.jsx";
 import axios from "axios";
+import Header from "../../components/header/Header.jsx";
 
 const URI = "http://localhost:3000/"
 const ENDPOINT = "todos"
@@ -78,63 +79,66 @@ function Home() {
     }
 
     return (
-        <main>
-            <h1>Todo App</h1>
-            <form onSubmit={addTodo}>
-                <label htmlFor="new-task">New task
-                    <input
-                        type="text"
-                        id="new-task"
-                        name="new-task"
-                        placeholder="Title"
-                        value={inputValue}
-                        onChange={e => setInputValue(e.target.value)}
-                    />
-                </label>
-                <label htmlFor="priority"> Select priority
-                    <select
-                        id="priority"
-                        name="priority"
-                        value={priority}
-                        onChange={e => setPriority(parseInt(e.target.value))}
-                    >
-                        <option value="1">High priority</option>
-                        <option value="2">Medium priority</option>
-                        <option value="3">Low priority</option>
-                    </select>
-                </label>
-                <button type="submit">Add task</button>
-            </form>
+        <>
+            <Header/>
+            <main className="outer-container">
+                <div className="inner-container">
+                    <form onSubmit={addTodo} className="new-todo-form">
+                        <label htmlFor="new-task">
+                            <input
+                                type="text"
+                                id="new-task"
+                                name="new-task"
+                                placeholder="My new task..."
+                                maxLength={20}
+                                value={inputValue}
+                                onChange={e => setInputValue(e.target.value)}
+                            />
+                        </label>
+                        <label htmlFor="priority">
+                            <select
+                                id="priority"
+                                name="priority"
+                                value={priority}
+                                onChange={e => setPriority(parseInt(e.target.value))}
+                            >
+                                <option value="1">High priority</option>
+                                <option value="2">Medium priority</option>
+                                <option value="3">Low priority</option>
+                            </select>
+                        </label>
+                        <button type="submit">Add task</button>
+                    </form>
+                    <ol>
+                        {todos.map((todo) => {
+                            return (
+                                <ListItem
+                                    key={todo.id}
+                                    URI={URI}
+                                    ENDPOINT={ENDPOINT}
+                                    todo={todo}
+                                    todos={todos}
+                                    setTodos={setTodos}
+                                />
+                            );
+                        })
+                        }
+                    </ol>
 
-            {sorted ?
-                <button type="button" onClick={sortOnHighPriority}>High to low priority<ArrowUp size={16}
-                                                                                                color="#380518"/>
-                </button>
-                :
-                <button type="button" onClick={sortOnLowPriority}>Low to high priority<ArrowDown size={16}
-                                                                                                 color="#380518"/>
-                </button>
-            }
+                    {error && <p className="error-message">Error to fetch your to do's</p>}
 
-            <ol>
-                {todos.map((todo) => {
-                    return (
-                        <ListItem
-                            key={todo.id}
-                            URI={URI}
-                            ENDPOINT={ENDPOINT}
-                            todo={todo}
-                            todos={todos}
-                            setTodos={setTodos}
-                        />
-                    );
-                })
-                }
-            </ol>
-
-            {error && <p>Error to fetch your to do's</p>}
-
-        </main>
+                    {sorted ?
+                        <button className="sorting-button" type="button" onClick={sortOnHighPriority}>High
+                            priority <ArrowUp/>
+                        </button>
+                        :
+                        <button className="sorting-button" type="button" onClick={sortOnLowPriority}>Low
+                            priority <ArrowDown/>
+                        </button>
+                    }
+                </div>
+            </main>
+        </>
     );
 }
 

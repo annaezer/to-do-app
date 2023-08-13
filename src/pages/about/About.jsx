@@ -1,6 +1,8 @@
-import styles from "./About.module.css";
+import "./About.css";
 import axios from "axios";
 import {useEffect, useState} from "react";
+import Navigation from "../../components/navbar/Navigation.jsx";
+import an from "/src/assets/an.png"
 
 const URI = "http://localhost:3000/"
 const ENDPOINT = "profile"
@@ -25,10 +27,19 @@ function About() {
 
     return (
         <>
-            <p>{myData.name}</p>
-            <p>{myData.profession}</p>
-            <p>{myData.city}</p>
-            <p>{myData.description}</p>
+            <Navigation/>
+            <div className="inner-container">
+                <h1>About me</h1>
+                <section className="about-me">
+                    <p>Name: {myData.name}</p>
+                    <p>Profession: {myData.profession}</p>
+                    <p>City: {myData.city}</p>
+                    <p>{myData.description}</p>
+                </section>
+                <span className="image-wrapper">
+                    <img src={an} alt="Picture of An"/>
+                </span>
+            </div>
         </>
     );
 }

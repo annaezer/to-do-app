@@ -9,11 +9,18 @@
 }
 
 body {
-    background-image: url('../assets/notebook.jpg');
-    background-size: cover;
-    background-position: center;
-    width: 100vw;
-    height: 100vh;
+    background-color: var(--clr-powder);
+    min-height: 100vh;
+}
+
+a,
+a:link,
+a:visited {
+    text-decoration: none;
+}
+
+button {
+    cursor: pointer;
 }
 
 .delete-button,
@@ -39,17 +46,19 @@ html {
 
 body {
     font-family: "Quicksand", "Helvetica Neue", sans-serif;
+    color: var(--clr-chocolate);
 }
 
 button,
-input {
+input,
+select {
     font-family: inherit;
 }
 
 h1 {
     font-family: 'Big Shoulders Inline Text', "Oswald", "Arial", cursive;
     font-weight: 300;
-    font-size: 4rem;
+    font-size: 5rem;
     color: var(--clr-red);
 }
 
@@ -58,12 +67,12 @@ h2, h3, h4, h5, h6 {
 }
 
 h2 {
-    font-size: 2rem;
+    font-size: 3rem;
     font-weight: 400;
 }
 
 h3 {
-    font-size: 1.5rem;
+    font-size: 1.6rem;
 }
 
 /* ------------------------------- Layout --------------------------------------- */
@@ -80,8 +89,8 @@ h3 {
 }
 
 .inner-container {
-    /*!*Inside container is max 1400px width so it looks good on wide screens too - changing sizes to rem to make it easy to scale. Standard is 20px so 1400px is 70rem. It can shrink if the screen gets smaller but can not grow.*/
-    flex-basis: 70rem;
+    /*!*Inside container is max 1200px width so it looks good on wide screens too - changing sizes to rem to make it easy to scale. Standard is 20px so 1400px is 70rem. It can shrink if the screen gets smaller but can not grow.*/
+    flex-basis: 60rem;
     flex-shrink: 1;
     flex-grow: 0;
     /*Adding margin to left and right so content doesnt get squeezed to edges*/
@@ -98,7 +107,5 @@ h3 {
 img {
     width: 100%;
 }
-
-/*button, links*/
 
 /* ------------------------------- Media Queries -------------------------------- */

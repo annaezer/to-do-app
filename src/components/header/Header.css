@@ -1,0 +1,8 @@
+.header {
+    background: var(--clr-dark-orange);
+}
+
+.header-title {
+    color: var(--clr-powder);
+    margin-bottom: 1.5rem;
+}

@@ -1,0 +1,52 @@
+.todo-item {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin: 1rem;
+}
+
+.todo-check-and-title {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.todo-checkbox {
+    appearance: none;
+    width: 1rem;
+    height: 1rem;
+    background-color: var(--clr-powder);
+    border: 0.1rem solid var(--clr-dark-orange);
+    border-radius: 50%;
+    margin-right: 1rem;
+}
+
+.todo-checkbox:checked {
+    background-color: var(--clr-orange);
+}
+
+.todo-checkbox:hover {
+    background-color: var(--clr-orange);
+    cursor: pointer;
+}
+
+.todo-title {
+    text-transform: uppercase;
+}
+
+.todo-buttons {
+}
+
+.link-button,
+.priority-button,
+.delete-button {
+    margin-left: 1rem;
+}
+
+.link-button:hover,
+.delete-button:hover {
+    border: 0.05rem solid var(--clr-orange);
+    border-radius: 0.6rem;
+    padding: 0.1rem;
+}

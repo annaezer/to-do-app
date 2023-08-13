@@ -1,4 +1,4 @@
-import styles from "./NotFound.module.css";
+import "./NotFound.css";
 import {useNavigate} from "react-router-dom";
 import {useEffect} from "react";
 
@@ -11,9 +11,13 @@ function NotFound() {
         }, 3000), []
     });
 
-
     return (
-        <h2>This page doesn't exist. You'll be redirected to the homepage in 3 seconds.</h2>
+        <>
+            <div className="inner-container">
+                <h1 className="not-found-message">Oops!</h1>
+                <h3>This page doesn't exist. You'll be redirected to the homepage in 3 seconds...</h3>
+            </div>
+        </>
     );
 }
 

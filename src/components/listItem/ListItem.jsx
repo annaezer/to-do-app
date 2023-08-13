@@ -1,4 +1,4 @@
-import styles from "./ListItem.module.css"
+import "./ListItem.css"
 import {FlagPennant, Trash, Link} from "@phosphor-icons/react";
 import {useNavigate} from "react-router-dom";
 import axios from "axios";
@@ -44,27 +44,35 @@ function ListItem({todo, todos, setTodos, URI, ENDPOINT}) {
     }
 
     return (
-        <li key={todo.id} className="to-do-item">
-            <input
-                type="checkbox"
-                name={`${todo.title}-status`}
-                checked={todo.completed}
-                onChange={() => toggleCompleted(todo.id)}
-            />
-            <h3>{todo.title}</h3>
-            <button
-                type="button"
-                className="link-button"
-                onClick={() => navigate(`/todo/${todo.id}`)}
-            ><Link size={16} color="#380518"/></button>
-            <span>{todo.priority === 3 ? <FlagPennant size={16} color="yellow"/> : todo.priority === 2 ?
-                <FlagPennant size={16} color="orange"/> : <FlagPennant size={16} color="red"/>}</span>
-            <button
-                type="button"
-                onClick={() => deleteTodo(todo.id)}
-                className="delete-button"
-            ><Trash size={16} color="#380518"/>
-            </button>
+
+        <li key={todo.id} className="todo-item">
+            <div className="todo-check-and-title">
+                <input
+                    className="todo-checkbox"
+                    type="checkbox"
+                    name={`${todo.title}-status`}
+                    checked={todo.completed}
+                    onChange={() => toggleCompleted(todo.id)}
+                />
+                <h3 className="todo-title">{todo.title}</h3>
+            </div>
+            <div className="todo-buttons">
+                <button
+                    type="button"
+                    className="link-button"
+                    onClick={() => navigate(`/todo/${todo.id}`)}
+                ><Link size={28} color="#380518"/></button>
+                <span className="priority-button">{todo.priority === 3 ?
+                    <FlagPennant size={28} color="#fff047" weight="fill"/> : todo.priority === 2 ?
+                        <FlagPennant size={28} color="#e57506" weight="fill"/> :
+                        <FlagPennant size={28} color="#a31300" weight="fill"/>}</span>
+                <button
+                    type="button"
+                    onClick={() => deleteTodo(todo.id)}
+                    className="delete-button"
+                ><Trash size={28} color="#380518"/>
+                </button>
+            </div>
         </li>
     );
 }
