@@ -1,0 +1,143 @@
+.todo-head {
+    margin-bottom: 2rem;
+}
+
+.title-todo {
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+}
+
+.box-todo {
+    flex-basis: auto;
+    width: 32rem;
+    border: 0.05rem solid var(--clr-chocolate);
+    border-radius: 0.6rem;
+    padding: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.box-todo p {
+    margin: 0.5rem 0 0.5rem 0.5rem;
+}
+
+.text-box {
+    display: flex;
+}
+
+.text-box-title {
+    font-weight: 600;
+    color: var(--clr-red);
+}
+
+.edit-button {
+    text-transform: lowercase;
+    margin-block: 0.5rem;
+    margin-bottom: 1rem;
+    color: var(--clr-powder);
+    font-weight: 400;
+    text-align: center;
+    background: var(--clr-dark-orange);
+    border: 0.05rem solid var(--clr-red);
+    border-radius: 0.6rem;
+    padding: 0.7rem 0.8rem;
+    font-size: 0.8rem;
+}
+
+.edit-button:hover {
+    background: var(--clr-orange);
+    border: 0.05rem solid var(--clr-orange);
+}
+
+.back-home-link a {
+    text-transform: none;
+    color: var(--clr-chocolate);
+}
+
+.back-home-link a:hover {
+    font-weight: 600;
+}
+
+.form-to-edit-todo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 32rem;
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.form-to-edit-todo input,
+.form-to-edit-todo select {
+    color: var(--clr-chocolate);
+    font-weight: 400;
+    text-align: center;
+    background: var(--clr-powder);
+    border: 0.1rem solid var(--clr-red);
+    border-radius: 0.6rem;
+    width: 10rem;
+    padding: 0.5rem;
+    font-size: 0.8rem;
+}
+
+.form-to-edit-todo label {
+    font-weight: 600;
+}
+
+.input-wrapper {
+    display: flex;
+    flex-direction: row;
+    width: 20rem;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.button-wrapper {
+    display: flex;
+}
+
+.check-form {
+    appearance: none;
+    max-width: 1rem;
+    background-color: var(--clr-powder);
+    border: 0.1rem solid var(--clr-dark-orange);
+    border-radius: 50%;
+    margin-right: 8.7rem;
+}
+
+.check-form:checked {
+    background-color: var(--clr-orange);
+}
+
+.check-form:hover {
+    background-color: var(--clr-orange);
+    cursor: pointer;
+}
+
+.save-button:hover,
+.cancel-button {
+    text-align: center;
+    border: 0.1rem solid var(--clr-red);
+    border-radius: 0.6rem;
+    padding: 0.7rem 0.5rem;
+    font-size: 0.8rem;
+    background: var(--clr-dark-orange);
+    color: var(--clr-powder);
+    font-weight: 600;
+    width: 5rem;
+    margin: 0.5rem;
+}
+
+.save-button,
+.cancel-button:hover {
+    text-align: center;
+    border: 0.1rem solid var(--clr-yellow);
+    border-radius: 0.6rem;
+    padding: 0.7rem 0.5rem;
+    font-size: 0.8rem;
+    background: var(--clr-yellow);
+    color: var(--clr-chocolate);
+    font-weight: 600;
+    width: 5rem;
+    margin: 0.5rem;
+}

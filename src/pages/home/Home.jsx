@@ -45,7 +45,7 @@ function Home() {
                     id: id(),
                     title: inputValue,
                     completed: completed,
-                    description: "Write here your description",
+                    description: "No description yet",
                     priority: priority,
                     created: date,
                 });
