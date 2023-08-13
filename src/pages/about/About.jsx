@@ -31,10 +31,10 @@ function About() {
             <div className="inner-container">
                 <h1>About me</h1>
                 <section className="about-me">
-                    <p>Name: {myData.name}</p>
-                    <p>Profession: {myData.profession}</p>
-                    <p>City: {myData.city}</p>
-                    <p>{myData.description}</p>
+                    <span className="text-box-details"><p className="text-box-title-1">Name:</p><p>{myData.name}</p></span>
+                    <span className="text-box-details"><p className="text-box-title-1">Profession:</p><p>{myData.profession}</p></span>
+                    <span className="text-box-details"><p className="text-box-title-1">City:</p><p>{myData.city}</p></span>
+                   <p>{myData.description}</p>
                 </section>
                 <span className="image-wrapper">
                     <img src={an} alt="Picture of An"/>

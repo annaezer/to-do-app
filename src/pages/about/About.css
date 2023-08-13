@@ -1,6 +1,14 @@
 .about-me {
-    border: 2px solid var(--clr-dark-orange);
+    flex-basis: auto;
+    width: 32rem;
+    border: 0.1rem dotted var(--clr-dark-orange);
+    border-radius: 0.6rem;
+    padding: 0.5rem;
     margin-block: 3rem;
+}
+
+.about-me p {
+    margin-block: 0.5rem;
 }
 
 .image-wrapper {
@@ -11,6 +19,15 @@
 }
 
 img {
-    border: 0.1rem dotted var(--clr-dark-orange);
     border-radius: 0.6rem;
+}
+
+.text-box-details {
+    display: flex;
+}
+
+.text-box-title-1 {
+    font-weight: 600;
+    color: var(--clr-red);
+    margin-right: 0.5rem;
 }
